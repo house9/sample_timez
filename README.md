@@ -2,7 +2,7 @@
 
 http://stackoverflow.com/questions/17818329/rails-3-timezone-confusions/17840938#17840938
 
-TODO
+TODO: give the short list of stuff todo
 
 ### Setting up the application
 
@@ -31,6 +31,12 @@ config.time_zone = 'Central Time (US & Canada)'
 config.active_record.default_timezone = :local
 # don't do it!
 ```
+
+### Display times and dates using I18n
+
+http://guides.rubyonrails.org/i18n.html#adding-date-time-formats
+
+* TODO: xxxx
 
 ### Setting up user time zone edits
 

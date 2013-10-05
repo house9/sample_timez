@@ -51,6 +51,15 @@
 
       <%= yield %>
 
+      <p>
+        &nbsp;
+      </p>
+
+      <% if user_signed_in? %>
+        <div class="alert alert-info">
+          Last Login: <%= localize(current_user.last_sign_in_at, format: :timez) %>
+        </div>
+      <% end %>
     </div>
 
   </body>

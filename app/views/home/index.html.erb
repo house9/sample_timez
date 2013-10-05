@@ -1,7 +1,54 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>
+  Home
+</h1>
 
-<div>
-  <%= debug current_user %>
+<div class="row">
+  <div class="span6">
+    <h4>
+      Avoid
+    </h4>
+    <pre>
+      Date.today
+      # => <%= Date.today %>
+
+      Time.now
+      # => <%= Time.now %>
+    </pre>
+  </div>
+  <div class="span6">
+    <h4>
+      Timezone aware
+    </h4>
+    <pre>
+      Date.current
+      # => <%= Date.current %>
+
+      Time.zone.now
+      # => <%= Time.zone.now %>
+    </pre>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <h4>
+      Use I18n helpers to display date and times
+    </h4>
+    Any of the following can be used in your views: <i>I18n.localize</i>, <i>I18n.l</i>, <i>localize</i>, or simply <i>l</i>
+
+    <pre>
+      I18n.localize(current_user.created_at)
+      # => <%= I18n.localize(current_user.created_at) %>
+
+      localize(current_user.updated_at, format: :timez)
+      # => <%= localize(current_user.updated_at, format: :timez) %>
+
+      I18n.l(current_user.created_at.to_date)
+      # => <%= I18n.l(current_user.created_at.to_date) %>
+
+      l(current_user.updated_at.to_date, format: :timez)
+      # => <%= l(current_user.updated_at.to_date, format: :timez) %>
+    </pre>
+  </div>
 </div>
 
