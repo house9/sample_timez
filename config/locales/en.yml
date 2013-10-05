@@ -28,6 +28,7 @@ en:
       long: ! '%B %d, %Y'
       short: ! '%b %d'
       timez: ! '%m/%d/%Y'
+      timez_day_only: ! '%a'
 
   time:
     formats:
@@ -35,3 +36,4 @@ en:
       long: ! '%B %d, %Y %H:%M'
       short: ! '%d %b %H:%M'
       timez: ! '%m/%d/%Y at %l:%M%p %Z'
+      timez_time_only: ! '%l:%M%p'

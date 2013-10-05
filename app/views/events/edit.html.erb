@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="span12">
+    <h1>Editing event</h1>
+
+    <%= form_for(@event) do |f| %>
+      <%= render partial: 'errors' %>
+      <%= render partial: 'form', locals: { f: f } %>
+
+      <div class="actions">
+        <%= f.submit "Save Changes", { class: "btn btn-primary" } %>
+        <%= link_to 'Cancel', @event, class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>

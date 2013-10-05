@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  event_name: MyString
+  start_at: 2013-10-05 15:28:43
+  end_at: 2013-10-05 15:28:43
+  description: MyText
+  organizer: one
+
+two:
+  event_name: MyString
+  start_at: 2013-10-05 15:28:43
+  end_at: 2013-10-05 15:28:43
+  description: MyText
+  organizer: one

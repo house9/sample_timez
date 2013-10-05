@@ -57,7 +57,7 @@
 
       <% if user_signed_in? %>
         <div class="alert alert-info">
-          Last Login: <%= localize(current_user.last_sign_in_at, format: :timez) %>
+          Last Login: <%= localize(current_user.last_sign_in_at, format: :timez) if current_user.last_sign_in_at %>
         </div>
       <% end %>
     </div>
