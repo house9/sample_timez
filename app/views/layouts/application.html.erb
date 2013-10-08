@@ -16,12 +16,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Rails TimeZ</a>
+          <a class="brand" href="/">Rails TimeZ</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <% if user_signed_in? %>
                 <li>
                   <%= link_to "Home", home_index_path %>
+                </li>
+                <li>
+                  <%= link_to "Admin Events", events_path %>
                 </li>
                 <li>
                   <%= link_to "Edit Profile", edit_user_registration_path %>

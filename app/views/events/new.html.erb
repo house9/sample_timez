@@ -2,11 +2,11 @@
   <div class="span12">
     <h1>New event</h1>
 
-    <%= form_for(@event) do |f| %>
+    <%= form_for(@event, html: { class: "form-horizontal" }) do |f| %>
       <%= render partial: 'errors' %>
       <%= render partial: 'form', locals: { f: f } %>
 
-      <div class="actions">
+      <div class="form-actions">
         <%= f.submit "Create New Event", { class: "btn btn-primary" } %>
         <%= link_to 'Cancel', events_path, class: "btn" %>
       </div>

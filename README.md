@@ -36,6 +36,8 @@ config.active_record.default_timezone = :local
 
 http://guides.rubyonrails.org/i18n.html#adding-date-time-formats
 
+https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale
+
 * TODO: xxxx
 
 ### Setting up user time zone edits
