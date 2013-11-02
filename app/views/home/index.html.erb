@@ -52,3 +52,13 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="span6">
+    Data ordered using SQL
+    <%= render partial: "list_events", locals: { list: @events_sql_order } %>
+  </div>
+  <div class="span6">
+    Ruby sort (orderd attributes do not convert in use_zone block)
+    <%= render partial: "list_events", locals: { list: @events_ruby_order } %>
+  </div>
+</div>

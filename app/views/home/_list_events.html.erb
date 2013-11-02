@@ -1,0 +1,17 @@
+<div class="well">
+  <% list.each do |item| %>
+    <% Time.use_zone(item.time_zone) do %>
+      <p>
+        <%= item.event_name %><br />
+
+        <em>Timezone set by block</em><br />
+         - <%= l(item.start_at, format: :timez) %><br />
+         - <%= l(item.end_at, format: :timez) %><br />
+
+         <em>Force Timezones</em><br />
+         - <%= l(item.start_at.in_time_zone(item.time_zone), format: :timez) %><br />
+         - <%= l(item.end_at.in_time_zone(item.time_zone), format: :timez) %><br />
+      </p>
+    <% end %>
+  <% end %>
+</div>
