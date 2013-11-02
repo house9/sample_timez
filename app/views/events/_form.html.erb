@@ -13,13 +13,19 @@
 <div class="control-group">
   <%= f.label :start_at, class: "control-label" %>
   <div class="controls">
-    <%= f.datetime_select :start_at, { use_month_numbers: true, ampm: true, minute_step: 15 }, { class: "input-small" } %>
+    <%= f.datetime_select :start_at,
+      { use_month_numbers: true, ampm: true, minute_step: 15 },
+      { class: "input-small" }
+    %>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :end_at, class: "control-label" %>
   <div class="controls">
-    <%= f.datetime_select :end_at, { use_month_numbers: true, ampm: true, minute_step: 15 }, { class: "input-small" } %>
+    <%= f.datetime_select :end_at,
+      { use_month_numbers: true, ampm: true, minute_step: 15 },
+      { class: "input-small" }
+    %>
   </div>
 </div>
 <div class="control-group">

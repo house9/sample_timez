@@ -1,9 +1,9 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_event_time_zone, only: [:show, :edit, :create, :update]
+  before_action :set_event_time_zone, only: [:create, :update]
 
   def index
-    @events = Event.all
+    @events = Event.order(:start_at, :end_at)
   end
 
   def show
@@ -61,8 +61,6 @@ class EventsController < ApplicationController
   def set_event_time_zone
     if params[:event]
       Time.zone = params[:event][:time_zone]
-    elsif @event
-      Time.zone = @event.time_zone
     end
   end
 

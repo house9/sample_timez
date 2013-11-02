@@ -1,15 +1,31 @@
-<div class="row">
-  <div class="span12">
-    <h1>Editing event</h1>
+<% Time.use_zone(@event.time_zone) do %>
+  <div class="row">
+    <div class="span12">
+      <h1>Editing event</h1>
 
-    <%= form_for(@event, html: { class: "form-horizontal" }) do |f| %>
-      <%= render partial: 'errors' %>
-      <%= render partial: 'form', locals: { f: f } %>
+      <%= form_for(@event, html: { class: "form-horizontal" }) do |f| %>
+        <%= render partial: 'errors' %>
+        <%= render partial: 'form', locals: { f: f } %>
 
-      <div class="form-actions">
-        <%= f.submit "Save Changes", { class: "btn btn-primary" } %>
-        <%= link_to 'Cancel', @event, class: "btn" %>
-      </div>
-    <% end %>
+        <div class="control-group">
+          <div class="controls">
+            <%= l(@event.start_at, format: :timez) %>
+            <em>your local time: </em>
+            <%= l(@event.start_at.in_time_zone(current_user.time_zone), format: :timez) %>
+            <br />
+
+            <%= l(@event.end_at, format: :timez) %>
+            <em>your local time: </em>
+            <%= l(@event.end_at.in_time_zone(current_user.time_zone), format: :timez) %>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit "Save Changes", { class: "btn btn-primary" } %>
+          <%= link_to 'Cancel', @event, class: "btn" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
