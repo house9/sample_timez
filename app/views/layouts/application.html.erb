@@ -48,10 +48,6 @@
         </div>
       <% end %>
 
-      <div class="alert alert-info">
-        Current Timezone: <%= Time.zone %>
-      </div>
-
       <%= yield %>
 
       <p>
@@ -63,6 +59,10 @@
           Last Login: <%= localize(current_user.last_sign_in_at, format: :timez) if current_user.last_sign_in_at %>
         </div>
       <% end %>
+
+      <div class="alert alert-info">
+        Current Timezone: <%= Time.zone %>
+      </div>
     </div>
 
   </body>

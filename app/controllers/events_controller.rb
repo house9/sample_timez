@@ -1,12 +1,13 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_time_zone_from_event_params
+  before_action :set_event_time_zone, only: [:show, :edit, :create, :update]
 
   def index
     @events = Event.all
   end
 
   def show
+    # render
   end
 
   def new
@@ -14,6 +15,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    # render
   end
 
   def create
@@ -56,14 +58,17 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def set_time_zone_from_event_params
-    time_zone = params[:event][:time_zone]
-    Time.zone = time_zone if time_zone
+  def set_event_time_zone
+    if params[:event]
+      Time.zone = params[:event][:time_zone]
+    elsif @event
+      Time.zone = @event.time_zone
+    end
   end
 
   def event_params
     params.require(:event)
       .permit(:event_name, :start_at, :end_at, :description, :time_zone)
-      .merge(organizer_id: current_user.id)
+      .merge(organizer_id: current_user.id) # don't do this in real (production) code
   end
 end

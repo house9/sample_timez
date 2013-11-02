@@ -9,8 +9,7 @@
   <thead>
     <tr>
       <th>Event name</th>
-      <th>Start at</th>
-      <th>End at</th>
+      <th>Occurs On</th>
       <th>Description</th>
       <th>Organizer</th>
       <th></th>
@@ -20,11 +19,21 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.event_name %></td>
-        <td><%= l(event.start_at, format: :timez) %></td>
-        <td><%= l(event.end_at, format: :timez) %></td>
-        <td><%= truncate(event.description) %></td>
-        <td><%= event.organizer.email %></td>
+        <td>
+          <%= event.event_name %>
+        </td>
+        <td>
+          <% Time.use_zone(event.time_zone) do %>
+            <%= l(event.start_at, format: :timez) %> <br />
+            <%= l(event.end_at, format: :timez) %>
+          <% end %>
+        </td>
+        <td>
+          <%= truncate(event.description) %>
+        </td>
+        <td>
+          <%= event.organizer.email %>
+        </td>
         <td>
           <div class="btn-group">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
