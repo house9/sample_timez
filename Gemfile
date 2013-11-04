@@ -32,3 +32,5 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'awesome_print'
+
