@@ -8,7 +8,7 @@ TODO: give the short list of stuff todo
 
 Rails uses the following as defaults for a new application
 
-* Application assumes it is running in UTC 
+* Application assumes it is running in UTC
 * Database assumes it is storing data in UTC
 
 *** ---------> I recommended you stick with these defaults!***
@@ -43,7 +43,7 @@ https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale
 ### Setting up user time zone edits
 
 * http://railscasts.com/episodes/106-time-zones-revised
-* 
+*
 
 ```
 # http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-time_zone_select
@@ -75,3 +75,10 @@ http://english.stackexchange.com/questions/3934/time-zone-vs-timezone
 
 both are used in rails code base `config.time_zone` and `config.active_record.default_timezone`
 
+
+
+http://www.postgresql.org/docs/9.3/static/functions-datetime.html#FUNCTIONS-DATETIME-ZONECONVERT
+
+http://stackoverflow.com/questions/19664652/timezone-confusion-in-ruby-on-rails-4-0-postgres
+
+http://api.rubyonrails.org/classes/DateTime.html
