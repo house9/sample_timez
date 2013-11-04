@@ -1,0 +1,48 @@
+<h1>Listing work schedules</h1>
+
+<%= link_to 'New Schedule', new_work_schedule_path, class: "btn" %>
+<p>
+  &nbsp;
+</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Worker</th>
+      <th>Work date</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @work_schedules.each do |work_schedule| %>
+      <tr>
+        <td>
+          <%= work_schedule.worker.email %>
+        </td>
+        <td>
+          <%= l(work_schedule.start_at, format: :timez) %> <br />
+          <%= l(work_schedule.end_at, format: :timez) %>
+        </td>
+        <td>
+          <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to 'Show', work_schedule %>
+              </li>
+              <li>
+                <%= link_to 'Edit', edit_work_schedule_path(work_schedule) %>
+              </li>
+              <li>
+                <%= link_to 'Destroy', work_schedule, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />

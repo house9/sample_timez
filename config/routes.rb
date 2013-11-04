@@ -1,4 +1,6 @@
 SampleTimez::Application.routes.draw do
+  resources :work_schedules
+
   resources :events
 
   get "home/index"

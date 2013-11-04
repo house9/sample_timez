@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="span12">
+    <p>
+      <strong>Worker:</strong>
+      <%= @work_schedule.worker.email %>
+    </p>
+
+    <p>
+      <strong>When:</strong>
+      <%= l(@work_schedule.start_at.to_date, format: :timez_day_only) %>,
+      <%= l(@work_schedule.start_at.to_date, format: :timez) %>
+      <%= l(@work_schedule.start_at, format: :timez_time_only) %> - <%= l(@work_schedule.end_at, format: :timez) %>
+    </p>
+
+    <%= link_to 'Edit', edit_work_schedule_path(@work_schedule), class: "btn" %>
+    <%= link_to 'Back', work_schedules_path, class: "btn" %>
+  </div>
+</div>

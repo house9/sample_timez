@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="span12">
+    <h1>Editing schedule</h1>
+
+    <%= form_for(@work_schedule, html: { class: "form-horizontal" }) do |f| %>
+      <%= render partial: 'errors' %>
+      <%= render partial: 'form', locals: { f: f } %>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= l(@work_schedule.start_at, format: :timez) %>
+          <em>your local time: </em>
+          <%= l(@work_schedule.start_at.in_time_zone(current_user.time_zone), format: :timez) %>
+          <br />
+
+          <%= l(@work_schedule.end_at, format: :timez) %>
+          <em>your local time: </em>
+          <%= l(@work_schedule.end_at.in_time_zone(current_user.time_zone), format: :timez) %>
+          <br />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Save Changes", { class: "btn btn-primary" } %>
+        <%= link_to 'Cancel', @work_schedule, class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>

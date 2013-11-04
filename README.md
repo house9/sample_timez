@@ -82,3 +82,6 @@ http://www.postgresql.org/docs/9.3/static/functions-datetime.html#FUNCTIONS-DATE
 http://stackoverflow.com/questions/19664652/timezone-confusion-in-ruby-on-rails-4-0-postgres
 
 http://api.rubyonrails.org/classes/DateTime.html
+
+https://github.com/rails/rails/issues/9610
+
