@@ -1,0 +1,13 @@
+<div class="well">
+  <% list.each do |item| %>
+
+    <p>
+      <%= item.worker.email %><br />
+
+      <em>Timezone set by model attribute override</em><br />
+       - <%= l(item.start_at, format: :timez) %><br />
+       - <%= l(item.end_at, format: :timez) %><br />
+    </p>
+
+  <% end %>
+</div>

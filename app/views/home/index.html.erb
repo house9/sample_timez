@@ -69,5 +69,18 @@
     <%= render partial: "list_events", locals: { list: @events_from_yesterday } %>
   </div>
   <div class="span6">
+    Display events created 'last week'
+    <%= render partial: "list_events", locals: { list: @events_from_last_week } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    Data ordered using SQL
+    <%= render partial: "list_work_schedules", locals: { list: @work_schedule_sql_order } %>
+  </div>
+  <div class="span6">
+    Ruby sort (no issue as model attribute using in_time_zone)
+    <%= render partial: "list_work_schedules", locals: { list: @work_schedule_ruby_order } %>
   </div>
 </div>
