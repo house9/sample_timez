@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
     # events: sorted data
-    @events_sql_order = Event.order(:start_at).includes(:organizer)
-    @events_ruby_order = Event.all.sort_by { |x| x.start_at }
+    @events_sql_order = Event.order(:start_at).limit(4).includes(:organizer)
+    @events_ruby_order = Event.includes(:organizer).sort_by { |x| x.start_at }.first(4)
 
     # events: data from range
     start_at = (Date.current - 1.day).beginning_of_day
