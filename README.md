@@ -1,87 +1,25 @@
-# Rails Sample Application - sample_timez
+# Rails TimeZ (sample app)
 
-http://stackoverflow.com/questions/17818329/rails-3-timezone-confusions/17840938#17840938
+see the blog post at: [http://jessehouse.com/blog/2013/11/08/working-with-timezones-and-ruby-on-rails/](http://jessehouse.com/blog/2013/11/08/working-with-timezones-and-ruby-on-rails/)
 
-TODO: give the short list of stuff todo
+## Install locally
 
-### Setting up the application
-
-Rails uses the following as defaults for a new application
-
-* Application assumes it is running in UTC
-* Database assumes it is storing data in UTC
-
-*** ---------> I recommended you stick with these defaults!***
+Requires Postgres as the database, modify config/database.yml as needed
 
 ```
-# in rails console
+git clone https://github.com/house9/sample_timez.git
+cd sample_timez
+bundle
 
-Time.zone.name
-# => "UTC"
-
-ActiveRecord::Base.default_timezone
-# => :utc
+# create database and sample data
+bundle exec rake db_tasks:rebuild_database
+# start up rails
+rails s
 ```
 
-Both *can be* overriden in your application configuration file when the application boots up - *but don't do this!*
+Go to http://localhost:3000/
 
-```
-# config/application.rb
-config.time_zone = 'Central Time (US & Canada)'
-config.active_record.default_timezone = :local
-# don't do it!
-```
-
-### Display times and dates using I18n
-
-http://guides.rubyonrails.org/i18n.html#adding-date-time-formats
-
-https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale
-
-* TODO: xxxx
-
-### Setting up user time zone edits
-
-* http://railscasts.com/episodes/106-time-zones-revised
-*
-
-```
-# http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-time_zone_select
-time_zone_select form helper
-
-ActiveSupport::TimeZone.zones_map
-ActiveSupport::TimeZone.us_zones
+The login page is setup to auto-fill existing user accounts, or create your own.
 
 
-# other useful
-rake time:zones:all
-
-```
-
-### Each request
-
-```
-```
-
-## Postgres database setttings
-
-TODO
-
-## Misc
-
-is it 'time zone', 'timezone' or 'time-zone' ?
-
-http://english.stackexchange.com/questions/3934/time-zone-vs-timezone
-
-both are used in rails code base `config.time_zone` and `config.active_record.default_timezone`
-
-
-
-http://www.postgresql.org/docs/9.3/static/functions-datetime.html#FUNCTIONS-DATETIME-ZONECONVERT
-
-http://stackoverflow.com/questions/19664652/timezone-confusion-in-ruby-on-rails-4-0-postgres
-
-http://api.rubyonrails.org/classes/DateTime.html
-
-https://github.com/rails/rails/issues/9610
 
