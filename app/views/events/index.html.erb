@@ -20,7 +20,7 @@
     <% @events.each do |event| %>
       <tr>
         <td>
-          <%= event.event_name %>
+          <%= link_to event.event_name, event %>
         </td>
         <td>
           <% Time.use_zone(event.time_zone) do %>

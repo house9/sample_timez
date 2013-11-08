@@ -18,7 +18,7 @@
     <% @work_schedules.each do |work_schedule| %>
       <tr>
         <td>
-          <%= work_schedule.worker.email %>
+          <%= link_to work_schedule.worker.email, work_schedule %>
         </td>
         <td>
           <%= l(work_schedule.start_at, format: :timez) %> <br />

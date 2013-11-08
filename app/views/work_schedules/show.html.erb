@@ -16,3 +16,13 @@
     <%= link_to 'Back', work_schedules_path, class: "btn" %>
   </div>
 </div>
+
+<p>
+  &nbsp;
+</p>
+
+<div class="muted">
+  Created at <%= l(@work_schedule.created_at, format: :timez) %>
+  <br />
+  Updated at <%= l(@work_schedule.updated_at, format: :timez) %>
+</div>
