@@ -21,3 +21,21 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<% if Rails.env.development? %>
+  <p>
+    &nbsp;
+  </p>
+
+  <div class="well" id="logins-container">
+    <p>
+      Test Login Accounts, all passwords are <span class="label">11122211</span>; click below to auto-fill.
+    </p>
+
+    <% User.order(:email).each do |user| %>
+      <div>
+        <%= link_to user.email, 'javascript: void(0)', data: { email: user.email }, class: "fills-login" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

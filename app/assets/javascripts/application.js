@@ -15,3 +15,13 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+
+// silly helper for logging into the sample application
+$(document).ready(function () {
+  $('#logins-container a.fills-login').click(function () {
+    var element = $(this)
+    $('#user_email').val(element.data('email'));
+    $('#user_password').val('11122211');
+  });
+});
