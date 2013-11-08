@@ -84,3 +84,12 @@
     <%= render partial: "list_work_schedules", locals: { list: @work_schedule_ruby_order } %>
   </div>
 </div>
+
+<div class="row">
+  <div class="span6">
+    Total Events: <%= @event_count_total %>
+  </div>
+  <div class="span6">
+    Upcoming Events: <%= @event_count_upcoming %> / Real: <%= @event_count_upcoming_real %>
+  </div>
+</div>
