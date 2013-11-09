@@ -1,9 +1,11 @@
 <div class="row">
   <div class="span6">
-    Total Events: <%= @event_count_total %>
+    Display events created 'yesterday'
+    <%= render partial: "list_events", locals: { list: @events_from_yesterday } %>
   </div>
   <div class="span6">
-    Upcoming Events: <%= @event_count_upcoming %> / Real: <%= @event_count_upcoming_real %>
+    Display events scheduled for 'today'
+    <%= render partial: "list_events", locals: { list: @events_scheduled_today } %>
   </div>
 </div>
 
@@ -12,23 +14,10 @@
 <div class="row">
   <div class="span6">
     Data ordered using SQL
-    <%= render partial: "list_events", locals: { list: @events_sql_order } %>
+    <%= render partial: "list_ordered_events", locals: { list: @events_sql_order } %>
   </div>
   <div class="span6">
     Ruby sort (ordered attributes do not convert in use_zone block)
-    <%= render partial: "list_events", locals: { list: @events_ruby_order } %>
-  </div>
-</div>
-
-<hr />
-
-<div class="row">
-  <div class="span6">
-    Display events created 'yesterday'
-    <%= render partial: "list_events", locals: { list: @events_from_yesterday } %>
-  </div>
-  <div class="span6">
-    Display events created 'last week'
-    <%= render partial: "list_events", locals: { list: @events_from_last_week } %>
+    <%= render partial: "list_ordered_events", locals: { list: @events_ruby_order } %>
   </div>
 </div>

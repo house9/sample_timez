@@ -2,7 +2,7 @@
   <% list.each do |item| %>
 
     <p>
-      <%= item.worker.email %><br />
+      <%= link_to item.worker.email, item %><br />
 
       <em>Timezone set by model attribute override</em><br />
        - <%= l(item.start_at, format: :timez) %><br />
