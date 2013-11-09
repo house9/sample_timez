@@ -21,8 +21,4 @@
   &nbsp;
 </p>
 
-<div class="muted">
-  Created at <%= l(@work_schedule.created_at, format: :timez) %>
-  <br />
-  Updated at <%= l(@work_schedule.updated_at, format: :timez) %>
-</div>
+<%= render partial: 'shared/update_info', locals: { record: @work_schedule } %>
