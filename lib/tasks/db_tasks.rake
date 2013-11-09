@@ -20,22 +20,25 @@ namespace :db_tasks do
   end
 
   task :load_additional_sample_data, [] => :environment do |task, args|
-    user = User.where("email = ?", "fiji@example.com").limit(1).first
+    User.where("email <> ?", "_pacific_gmt-8@example.com").each do |user|
+      Time.use_zone(user.time_zone) do
+        24.times.each do |index|
+          start_at = Date.current.beginning_of_day + index.hours
+          end_at = start_at + 5.hours
 
-    Time.use_zone(user.time_zone) do
-      (-5..5).each do |index|
-        start_at = Time.zone.now + index.days
-        end_at = start_at + 6.hours
+          created_at_offset = (index % 2 == 0) ? index.days : index.hours
 
-        Event.create!({
-          event_name: "Event [#{index}]",
-          organizer: user,
-          time_zone: user.time_zone,
-          start_at: start_at,
-          end_at: end_at,
-          created_at: start_at
-        })
+          Event.create!({
+            event_name: "Event [#{index} - #{user.time_zone}]",
+            organizer: user,
+            time_zone: user.time_zone,
+            start_at: start_at,
+            end_at: end_at,
+            created_at: Time.zone.now.yesterday - created_at_offset
+          })
+        end
       end
     end
+
   end
 end
