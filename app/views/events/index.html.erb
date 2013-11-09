@@ -9,8 +9,8 @@
   <thead>
     <tr>
       <th>Event name</th>
-      <th>Occurs On</th>
-      <th>Description</th>
+      <th>Scheduled Time</th>
+      <th>User Time</th>
       <th>Organizer</th>
       <th></th>
     </tr>
@@ -24,12 +24,17 @@
         </td>
         <td>
           <% Time.use_zone(event.time_zone) do %>
-            <%= l(event.start_at, format: :timez) %> <br />
+            <%= l(event.start_at, format: :timez) %>
+            <br />
             <%= l(event.end_at, format: :timez) %>
           <% end %>
         </td>
         <td>
-          <%= truncate(event.description) %>
+          <div class="muted">
+            <%= l(event.start_at.in_time_zone(current_user.time_zone), format: :timez) %>
+            <br />
+            <%= l(event.end_at.in_time_zone(current_user.time_zone), format: :timez) %>
+          </div>
         </td>
         <td>
           <%= event.organizer.email %>

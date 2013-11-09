@@ -7,10 +7,19 @@
       </p>
 
       <p>
-        <strong>When:</strong>
         <%= l(@event.start_at.to_date, format: :timez_day_only) %>,
         <%= l(@event.start_at.to_date, format: :timez) %>
-        <%= l(@event.start_at, format: :timez_time_only) %> - <%= l(@event.end_at, format: :timez) %>
+        <%= l(@event.start_at, format: :timez_time_only) %>
+        -
+        <%= l(@event.end_at, format: :timez) %>
+
+        <div class="muted">
+          <%= l(@event.start_at.in_time_zone(current_user.time_zone).to_date, format: :timez_day_only) %>,
+          <%= l(@event.start_at.in_time_zone(current_user.time_zone).to_date, format: :timez) %>
+          <%= l(@event.start_at.in_time_zone(current_user.time_zone), format: :timez_time_only) %>
+          -
+          <%= l(@event.end_at.in_time_zone(current_user.time_zone), format: :timez) %>
+        </div>
       </p>
 
       <p>
