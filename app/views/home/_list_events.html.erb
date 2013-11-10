@@ -1,1 +1,18 @@
-TODO
+<% list.each do |event| %>
+  <div>
+    <%= link_to event.event_name, event %>
+    <br />
+
+    <% Time.use_zone(event.time_zone) do %>
+      <%= l(event.start_at, format: :timez) %>
+      <br />
+      <%= l(event.end_at, format: :timez) %>
+    <% end %>
+
+    <div class="muted">
+      <%= l(event.start_at.in_time_zone(current_user.time_zone), format: :timez) %>
+      <br />
+      <%= l(event.end_at.in_time_zone(current_user.time_zone), format: :timez) %>
+    </div>
+  </div>
+<% end %>

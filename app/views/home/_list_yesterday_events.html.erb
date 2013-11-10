@@ -1,0 +1,20 @@
+<h4>
+  <%= list.length %>
+</h4>
+
+<% list.each do |event| %>
+  <div>
+    <%= link_to event.event_name, event %>
+    <br />
+
+    <% Time.use_zone(event.time_zone) do %>
+      <%= l(event.created_at, format: :timez) %>
+    <% end %>
+
+    <div class="muted">
+      <%= l(event.created_at.in_time_zone(current_user.time_zone), format: :timez) %>
+    </div>
+
+    <%= l(event.created_at.in_time_zone('UTC'), format: :timez) %>
+  </div>
+<% end %>
