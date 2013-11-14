@@ -7,10 +7,10 @@ class HomeController < ApplicationController
     @events_scheduled_today = []
     @events_from_yesterday = []
 
-    # load_ordered_work_schedules
-    # load_ordered_events
+    load_ordered_work_schedules
+    load_ordered_events
     load_events_created_yesterday
-    # load_events_scheduled_today
+    load_events_scheduled_today_on_the_east_coast
   end
 
   private
@@ -28,52 +28,29 @@ class HomeController < ApplicationController
   end
 
   def load_events_created_yesterday
-    # # events: data from range
     start_at = (Date.current - 1.day).beginning_of_day
     end_at = start_at.end_of_day
 
-    # formatted_offset
+    # rails will convert times to filter to created yesterday
+    @events_from_yesterday = Event.where("created_at BETWEEN ? AND ?", start_at, end_at).order(:created_at)
+    # Offset correctly for user who is "(GMT-06:00) Mexico City"
+    # SELECT "events".* FROM "events" WHERE (created_at BETWEEN '2013-11-08 06:00:00.000000' AND '2013-11-09 05:59:59.999999') ORDER BY "events"."created_at" ASC
+    # basically the same
+    # @events_from_yesterday = Event.where("created_at >= ?", start_at).where("created_at <= ?", end_at).order(:created_at)
 
-    # # yesterday based on the current users time, but created_at is stored in UTC
-    # # this commented out code would return different results depending on time of day and users time_zone
-    # # @events_from_yesterday = Event.where("created_at BETWEEN ? AND ?", start_at, end_at)
-    user_time_zone = Time.zone.now.strftime("%Z")
-    # # # postgres specific use ('timezone' or 'AT TIME ZONE') - http://www.postgresql.org/docs/9.3/static/functions-datetime.html#FUNCTIONS-DATETIME-ZONECONVERT
-
-    # @events_from_yesterday = Event.order(:created_at)
-    #   .where("timezone(?, created_at) BETWEEN ? AND ?", user_time_zone, force_database_time(start_at), force_database_time(end_at))
-    # #
-
-    @events_from_yesterday = Event.order(:created_at)
-      .where("created_at BETWEEN ? AND ?", start_at, end_at)
-    # # SELECT "events".* FROM "events" WHERE (created_at BETWEEN '2013-11-08 00:00:00 -0800' AND '2013-11-08 23:59:59 -0800') ORDER BY "events"."created_at" ASC;
-
-    # @events_from_yesterday = Event.order(:created_at)
-    #   .where("timezone(?, created_at) BETWEEN ? AND ?", user_time_zone, start_at.to_s, end_at.to_s)
-    # SELECT "events".* FROM "events" WHERE (timezone('PST', created_at) BETWEEN '2013-11-08 00:00:00 -0800' AND '2013-11-08 23:59:59 -0800') ORDER BY "events"."created_at" ASC
-
-    # @events_from_yesterday = Event.order(:created_at)
-    #   .where("timezone(?, created_at) BETWEEN ? AND ?", user_time_zone, start_at, end_at)
-    # SELECT "events".* FROM "events" WHERE (timezone('PST', created_at) BETWEEN '2013-11-09 00:00:00.000000' AND '2013-11-09 23:59:59.999999') ORDER BY "events"."created_at" ASC
-
-    # @events_from_yesterday = Event.order(:created_at)
-    #   .where("created_at BETWEEN ? AND ?", start_at, end_at)
-    # # SELECT "events".* FROM "events" WHERE (created_at BETWEEN '2013-11-08 08:00:00.000000' AND '2013-11-09 07:59:59.999999') ORDER BY "events"."created_at" ASC
+    # don't do this
+    # @events_from_yesterday = Event.where("DATE(created_at) = ?", Date.current - 1.day).order(:created_at)
+    # not offset, different results at different times of the day
+    # SELECT "events".* FROM "events" WHERE (DATE(created_at) = '2013-11-09') ORDER BY "events"."created_at" ASC
   end
 
-  def load_events_scheduled_today
-    @events_scheduled_today = [] # TODO
-  end
+  def load_events_scheduled_today_on_the_east_coast
+    @corp_office = OpenStruct.new({ time_zone: "Eastern Time (US & Canada)" })
 
-  def force_database_time(value)
-    # convert to a string so active record doesn't offset the value
-    # strip off the offset
-    logger.debug value.to_s
-    logger.debug value.to_s(:db)
-    logger.debug value.getutc.to_s(:db)
-
-    result = value.to_s.gsub(value.formatted_offset(false), "").strip
-    logger.debug result
-    result
+    Time.use_zone(@corp_office.time_zone) do
+      start_at = Date.current.beginning_of_day
+      end_at = start_at.end_of_day
+      @events_scheduled_today = Event.where("start_at BETWEEN ? AND ?", start_at, end_at).order(:start_at)
+    end
   end
 end

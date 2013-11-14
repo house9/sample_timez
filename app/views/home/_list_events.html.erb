@@ -14,5 +14,11 @@
       <br />
       <%= l(event.end_at.in_time_zone(current_user.time_zone), format: :timez) %>
     </div>
+
+    <div class="muted">
+      <%= l(event.start_at.in_time_zone(@corp_office.time_zone), format: :timez) %>
+      <br />
+      <%= l(event.end_at.in_time_zone(@corp_office.time_zone), format: :timez) %>
+    </div>
   </div>
 <% end %>
