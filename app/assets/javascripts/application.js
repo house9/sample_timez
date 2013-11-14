@@ -23,5 +23,6 @@ $(document).ready(function () {
     var element = $(this)
     $('#user_email').val(element.data('email'));
     $('#user_password').val('11122211');
+    $('#new_user').submit();
   });
 });
