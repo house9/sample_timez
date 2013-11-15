@@ -1,6 +1,6 @@
 # Rails TimeZ (sample app)
 
-see the blog post at: [http://jessehouse.com/blog/2013/11/08/working-with-timezones-and-ruby-on-rails/](http://jessehouse.com/blog/2013/11/08/working-with-timezones-and-ruby-on-rails/)
+see the blog post at: [http://jessehouse.com/blog/2013/11/15/working-with-timezones-and-ruby-on-rails/](http://jessehouse.com/blog/2013/11/15/working-with-timezones-and-ruby-on-rails/)
 
 ## Install locally
 
